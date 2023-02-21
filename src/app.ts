@@ -24,4 +24,6 @@ import dynamicImportAll from "./dynamicImportAll";
     //dynamically import all entities
     const imported = await dynamicImportAll(entities);
     console.log(imported);
+    const test = new imported[0]();
+    test.logggg();
 })();
