@@ -4,7 +4,7 @@ dotenv.config();
 
 
 
-exec(`typeorm-model-generator -h ${process.env.DB_HOST} -d ${process.env.DB_NAME} -p ${process.env.DB_PORT} -u ${process.env.DB_USERNAME} -x ${process.env.DB_PASSWORD} -e oracle`, (error, stdout, stderr) => {
+exec(`typeorm-model-generator -h ${process.env.DB_HOST} -p ${process.env.DB_PORT} -u ${process.env.DB_USERNAME} -x ${process.env.DB_PASSWORD} -e oracle`, (error, stdout, stderr) => {
     if (error) {
         console.log(`error: ${error.message}`);
         return;
