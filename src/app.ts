@@ -1,13 +1,28 @@
-import express, { Application, Request, Response } from 'express'
+import { exec } from "child_process";
 
-const app: Application = express()
+// exec("typeorm-model-generator -h localhost/orcl -d HR -p 1521 -u HR -x root -e oracle", (error, stdout, stderr) => {
+//     if (error) {
+//         console.log(`error: ${error.message}`);
+//         return;
+//     }
+//     if (stderr) {
+//         console.log(`stderr: ${stderr}`);
+//         return;
+//     }
+//     console.log(`stdout: ${stdout}`);
+// })
 
-const port: number = 3001
+import oracledb from "oracledb";
 
-app.get('/toto', (req: Request, res: Response) => {
-    res.send('Hello toto')
-})
 
-app.listen(port, function () {
-    console.log(`App is listening on port ${port} !`)
-})
+async function fun() {
+    const con = await oracledb.getConnection({
+        user: "HR",
+        password: "root",
+        connectString: "localhost/orcl"
+    });
+    const result = await con.execute("select * from employees");
+    console.log(result);
+}
+
+fun();
